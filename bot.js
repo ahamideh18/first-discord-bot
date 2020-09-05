@@ -23,8 +23,12 @@ client.on('message', message => {
     }
 
     if (message.content.toLowerCase() === '!lebron') {
-        getLebron().then(data => message.channel.send("Here's a wild Lebron", { files: [data] }))
-        
+        const lebronEmbed = new Discord.MessageEmbed()
+            .setColor('#830037')
+            .setTitle("Here's a Wild Lebron")
+        getLebron().then(data => lebronEmbed.setImage(data))
+
+        message.channel.send(lebronEmbed)
     }
 });
 
