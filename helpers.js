@@ -19,4 +19,15 @@ async function getJoke() {
     return resultMessage
 }
 
-module.exports = {getQuran, getJoke};
+async function getLebron() {
+    const searchData = await axios.get('https://api.cognitive.microsoft.com/bing/v7.0/images/search?q=lebron', {
+        headers: {
+            'Ocp-Apim-Subscription-Key': process.env.AZURE_KEY
+        }
+    })
+    const responseData = await searchData.data.value
+    const randomImgUrl = await (responseData[Math.floor(Math.random() * responseData.length)]).contentUrl
+    return randomImgUrl
+}
+
+module.exports = { getQuran, getJoke, getLebron };
