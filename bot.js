@@ -4,7 +4,7 @@ const axios = require('axios');
 
 require('dotenv').config()
 
-const { getQuran, getJoke, getLebron } = require('./helpers')
+const { getQuran, getJoke } = require('./helpers')
 
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.username}, ${client.user.id}`);
@@ -20,15 +20,6 @@ client.on('message', message => {
 
     if (message.content.toLowerCase() === '!joke') {
         getJoke().then(data => message.channel.send(data))
-    }
-
-    if (message.content.toLowerCase() === '!lebron') {
-        const lebronEmbed = new Discord.MessageEmbed()
-            .setColor('#830037')
-            .setTitle("Here's a Wild Lebron")
-        getLebron().then(data => lebronEmbed.setImage(data))
-
-        message.channel.send(lebronEmbed)
     }
 });
 
