@@ -3,7 +3,7 @@ const client = new Discord.Client();
 
 require('dotenv').config()
 
-const getQuran = require('./helpers')
+const {getQuran, getJoke} = require('./helpers')
 
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.username}, ${client.user.id}`);
@@ -15,6 +15,10 @@ client.on('message', message => {
 
     if (message.content.toLowerCase() === '!quran') {
         getQuran().then(data => message.channel.send(data))
+    }
+
+    if (message.content.toLowerCase() === '!joke') {
+        getJoke().then(data => message.channel.send(data))
     }
 });
 

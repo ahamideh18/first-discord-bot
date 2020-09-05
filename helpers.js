@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-async function getQuran () {
+async function getQuran() {
     const ayahNumber = Math.floor(Math.random() * 6237);
     const quranData = await axios.get(`https://api.alquran.cloud/ayah/${ayahNumber}/editions/quran-uthmani,en.pickthall`)
     const juz = await quranData.data.data[1].juz
@@ -12,4 +12,11 @@ async function getQuran () {
     return resultMessage
 }
 
-module.exports = getQuran;
+async function getJoke() {
+    const jokeData = await axios.get('https://official-joke-api.appspot.com/random_joke')
+    const { setup, punchline } = await jokeData.data
+    const resultMessage = await `***${setup}***\n${punchline}`
+    return resultMessage
+}
+
+module.exports = {getQuran, getJoke};
